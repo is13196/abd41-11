@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="abd41-11/MainWindow.axaml" value="abd41-11/abd41-11.csproj" />
+        <entry key="abd41-11/RegistrationForm1.axaml" value="abd41-11/abd41-11.csproj" />
+        <entry key="abd41-11/Маршруты.axaml" value="abd41-11/abd41-11.csproj" />
+        <entry key="abd41-11/водители1.axaml" value="abd41-11/abd41-11.csproj" />
+        <entry key="abd41-11/графики_работы_водителей.axaml" value="abd41-11/abd41-11.csproj" />
+        <entry key="abd41-11/маршруты.axaml" value="abd41-11/abd41-11.csproj" />
+        <entry key="abd41-11/маршруты1.axaml" value="abd41-11/abd41-11.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

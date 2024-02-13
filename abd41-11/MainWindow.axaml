@@ -1,0 +1,72 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="abd41_11.MainWindow"
+        Title="abd41_11">
+        <Grid>
+                <StackPanel Orientation="Vertical">
+                        <!-- Форма добавления данных -->
+                        <StackPanel Margin="10">
+                                <TextBlock Text="Добавление данных" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtid" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtназвание" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtтип" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtвместимость" Text="" Margin="0,0,0,10"/>
+                                <Button Content="Добавить" Click="AddButton_Click"/>
+                        </StackPanel>
+                        <!-- Форма редактирования данных -->
+                        <StackPanel Margin="10">
+                                <TextBlock Text="Редактирование данных" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditid" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditназвание" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditтип" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditвместимость" Text="" Margin="0,0,0,10"/>
+                                <Button Content="Редактировать" Click="EditButton_Click"/>
+                        </StackPanel>
+                        <!-- Форма удаления данных -->
+                        <StackPanel Margin="10">
+                                <TextBlock Text="Удаление данных" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtDeleteid" Text="" Margin="0,0,0,10"/>
+                                
+                                
+                                
+                                
+                                <Button Content="Удалить" Click="DeleteButton_Click"/>
+                                <Button Name="saveData" Content="Далее" Click="SaveData_OnClick"></Button>
+                        </StackPanel>
+                        
+                        <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" x:Name="txtShow">Фильтрация данных по типу:</TextBlock>
+                                <ComboBox Name="CmbТранспортные_средства" x:CompileBindings="False" SelectionChanged="CmbТранспортные_средства_OnSelectionChanged">
+                                        <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                        <TextBlock Text="{Binding тип}"></TextBlock>
+                                                </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock VerticalAlignment="Center">Поиск данных по названию:</TextBlock>
+                                <TextBox Name="txtSearch" Width="200" Margin="10 0 0 0 " TextChanged="TxtSearch_OnTextChanged"></TextBox>
+                            
+                                
+                        </StackPanel>
+                        <StackPanel>
+                                
+                              
+                        </StackPanel>
+
+                                <DataGrid Name="Транспортные_средстваGrid" x:CompileBindings="False" >
+                                        <DataGrid.Columns>
+                                                <DataGridTextColumn Header="id" Binding="{Binding id}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="название" Binding="{Binding название}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="тип" Binding="{Binding тип}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="вместимость" Binding="{Binding вместимость}"></DataGridTextColumn>
+                                        </DataGrid.Columns>
+                                </DataGrid>
+                        </StackPanel>
+        </Grid>
+</Window>   
+                     
+       
+

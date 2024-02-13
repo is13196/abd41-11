@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.2" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.0.2" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.2" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.2" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.2" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2" />
+        <PackageReference Include="MySql.Data" Version="8.1.0" />
+        <PackageReference Include="System.Collections" Version="4.3.0" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Remove="транспортные_средства.cs" />
+      <Compile Remove="маршруты.cs" />
+      <Compile Remove="график_работы_водителей.cs" />
+      <Compile Remove="Gender.cs" />
+      <Compile Remove="Booking.cs" />
+      <Compile Include="Маршруты.cs" />
+      <Compile Include="Транспортные_средства.cs" />
+      <Compile Remove="Маршруты.axaml.cs" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <AvaloniaXaml Remove="Маршруты.axaml" />
+    </ItemGroup>
+</Project>
