@@ -11,19 +11,21 @@
                         <StackPanel Margin="10">
                                 <TextBlock Text="Добавление данных" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
                                 <TextBox x:Name="txtid" Text="" Margin="0,0,0,10"/>
-                                <TextBox x:Name="txtназвание" Text="" Margin="0,0,0,10"/>
-                                <TextBox x:Name="txtтип" Text="" Margin="0,0,0,10"/>
-                                <TextBox x:Name="txtвместимость" Text="" Margin="0,0,0,10"/>
-                                <Button Content="Добавить" Click="AddButton_Click"/>
+                                <TextBox x:Name="txtФИО" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtДата_рождения" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtАдрес" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtТелефон" Text="" Margin="0,0,0,10"/>
+                                <Button Content="Добавить" Background="Cyan" Click="AddButton_Click"/> 
                         </StackPanel>
                         <!-- Форма редактирования данных -->
                         <StackPanel Margin="10">
                                 <TextBlock Text="Редактирование данных" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
                                 <TextBox x:Name="txtEditid" Text="" Margin="0,0,0,10"/>
-                                <TextBox x:Name="txtEditназвание" Text="" Margin="0,0,0,10"/>
-                                <TextBox x:Name="txtEditтип" Text="" Margin="0,0,0,10"/>
-                                <TextBox x:Name="txtEditвместимость" Text="" Margin="0,0,0,10"/>
-                                <Button Content="Редактировать" Click="EditButton_Click"/>
+                                <TextBox x:Name="txtEditФИО" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditДата_рождения" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditАдрес" Text="" Margin="0,0,0,10"/>
+                                <TextBox x:Name="txtEditТелефон" Text="" Margin="0,0,0,10"/>
+                                <Button Content="Редактировать" Background="PaleGoldenrod" Click="EditButton_Click"/> 
                         </StackPanel>
                         <!-- Форма удаления данных -->
                         <StackPanel Margin="10">
@@ -33,20 +35,20 @@
                                 
                                 
                                 
-                                <Button Content="Удалить" Click="DeleteButton_Click"/>
-                                <Button Name="saveData" Content="Далее" Click="SaveData_OnClick"></Button>
+                                <Button Content="Удалить" Background="Crimson" Click="DeleteButton_Click"/> 
+                                <Button Name="saveData" Content="Переход на окно регистрации" Click="SaveData_OnClick" Background="MediumPurple"></Button> 
                         </StackPanel>
                         
                         <StackPanel Orientation="Horizontal">
-                                <TextBlock VerticalAlignment="Center" x:Name="txtShow">Фильтрация данных по типу:</TextBlock>
-                                <ComboBox Name="CmbТранспортные_средства" x:CompileBindings="False" SelectionChanged="CmbТранспортные_средства_OnSelectionChanged">
+                                <TextBlock VerticalAlignment="Center" x:Name="txtShow">Фильтрация данных по Дате_рождения:</TextBlock>
+                                <ComboBox Name="Cmbстуденты" x:CompileBindings="False" SelectionChanged="Cmbстуденты_OnSelectionChanged">
                                         <ComboBox.ItemTemplate>
                                                 <DataTemplate>
-                                                        <TextBlock Text="{Binding тип}"></TextBlock>
+                                                        <TextBlock Text="{Binding Дата_рождения}"></TextBlock>
                                                 </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <TextBlock VerticalAlignment="Center">Поиск данных по названию:</TextBlock>
+                                <TextBlock VerticalAlignment="Center">Поиск данных по ФИО:</TextBlock>
                                 <TextBox Name="txtSearch" Width="200" Margin="10 0 0 0 " TextChanged="TxtSearch_OnTextChanged"></TextBox>
                             
                                 
@@ -56,12 +58,13 @@
                               
                         </StackPanel>
 
-                                <DataGrid Name="Транспортные_средстваGrid" x:CompileBindings="False" >
+                                <DataGrid Name="студентыGrid" x:CompileBindings="False" >
                                         <DataGrid.Columns>
                                                 <DataGridTextColumn Header="id" Binding="{Binding id}"></DataGridTextColumn>
-                                                <DataGridTextColumn Header="название" Binding="{Binding название}"></DataGridTextColumn>
-                                                <DataGridTextColumn Header="тип" Binding="{Binding тип}"></DataGridTextColumn>
-                                                <DataGridTextColumn Header="вместимость" Binding="{Binding вместимость}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="ФИО" Binding="{Binding ФИО}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Дата_рождения" Binding="{Binding Дата_рождения}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Адрес" Binding="{Binding Адрес}"></DataGridTextColumn>
+                                                <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}"></DataGridTextColumn>
                                         </DataGrid.Columns>
                                 </DataGrid>
                         </StackPanel>

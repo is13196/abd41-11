@@ -12,83 +12,85 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        string fullTable =
-            "SELECT id, название, тип, вместимость FROM Транспортные_средства;";
+        string fullTable = "SELECT id, ФИО, Дата_рождения, Адрес, Телефон FROM студенты;";
+            
         ShowTable(fullTable);
-        string sql = "SELECT id, название, тип, вместимость FROM Транспортные_средства;";
+        string sql = "SELECT id, ФИО, Дата_рождения, Адрес, Телефон FROM студенты;";
 
         ShowTable(sql);
-        FillТранспортные_средстваList();
+        FillстудентыList();
     }
 
 
-    private string _connString = "server=localhost;database=abd21;port=3306;User Id=root;password=09January2004";
-    private List<Транспортные_средства> _Транспортные_средстваs;
+    private string _connString = "server=localhost;database=pp1;port=3306;User Id=root;password=09January2004";
+    private List<студенты> _студентыs;
     private MySqlConnection _connection;
 
     public void ShowTable(string searchSql)
     {
-        string sql = "SELECT id, название, тип, вместимость FROM Транспортные_средства;";
+        string sql = "SELECT id, ФИО, Дата_рождения, Адрес, Телефон FROM студенты;";
 
-        _Транспортные_средстваs = new List<Транспортные_средства>();
+        _студентыs = new List<студенты>();
         _connection = new MySqlConnection(_connString);
         _connection.Open();
         MySqlCommand command = new MySqlCommand(sql, _connection);
         MySqlDataReader reader = command.ExecuteReader();
         while (reader.Read() && reader.HasRows)
         {
-            var currentТранспортные_средства = new Транспортные_средства()
+            var currentстуденты = new студенты()
             {
                 id = reader.GetInt32("id"),
-                название = reader.GetString("название"),
-                тип = reader.GetString("тип"),
-                вместимость = reader.GetInt32("вместимость")
+                ФИО = reader.GetString("ФИО"),
+                Дата_рождения = reader.GetString("Дата_рождения"),
+                Адрес = reader.GetString("Адрес"),
+                Телефон = reader.GetString("Телефон")
               
             };
-            _Транспортные_средстваs.Add(currentТранспортные_средства);
+            _студентыs.Add(currentстуденты);
         }
 
         _connection.Close();
-        Транспортные_средстваGrid.ItemsSource = _Транспортные_средстваs;
+        студентыGrid.ItemsSource = _студентыs;
     }
 
-    public void FillТранспортные_средстваList()
+    public void FillстудентыList()
     {
-        _Транспортные_средстваs = new List<Транспортные_средства>();
+        _студентыs = new List<студенты>();
         _connection = new MySqlConnection(_connString);
         _connection.Open();
         MySqlCommand command =
-            new MySqlCommand("SELECT id, название, тип, вместимость FROM Транспортные_средства;",
+            new MySqlCommand("SELECT id, ФИО, Дата_рождения, Адрес, Телефон FROM студенты;",
                 _connection);
         MySqlDataReader reader = command.ExecuteReader();
         while (reader.Read() && reader.HasRows)
         {
-            var currentТранспортные_средства = new Транспортные_средства()
+            var currentстуденты = new студенты()
             {
                 id = reader.GetInt32("id"),
-                название = reader.GetString("название"),
-                тип = reader.GetString("тип"),
-                вместимость = reader.GetInt32("вместимость"),
+                ФИО = reader.GetString("ФИО"),
+                Дата_рождения = reader.GetString("Дата_рождения"),
+                Адрес = reader.GetString("Адрес"),
+                Телефон = reader.GetString("Телефон") 
 
             };
-            _Транспортные_средстваs.Add(currentТранспортные_средства);
+            _студентыs.Add(currentстуденты);
         }
 
         _connection.Close();
-        var Транспортные_средстваComboBox = this.Find<ComboBox>("CmbТранспортные_средства");
-        Транспортные_средстваComboBox.ItemsSource = _Транспортные_средстваs;
+        var студентыComboBox = this.Find<ComboBox>("Cmbстуденты");
+        студентыComboBox.ItemsSource = _студентыs;
     }
 
 
 
     private void TxtSearch_OnTextChanged(object? sender, TextChangedEventArgs e)
     {
-        var searchТранспортные_средства = _Транспортные_средстваs;
+        var searchстуденты = _студентыs;
         //поиск - where, contains
-        searchТранспортные_средства = searchТранспортные_средства
-            .Where(p => p.название.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
-        //сортировка - orderby по столбцу название
-        Транспортные_средстваGrid.ItemsSource = searchТранспортные_средства.OrderBy(p => p.название);
+        searchстуденты = searchстуденты
+            .Where(p => p.ФИО.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+        //сортировка - orderby по столбцу ФИО
+        студентыGrid.ItemsSource = searchстуденты.OrderBy(p => p.ФИО);
     }
 
 
@@ -98,10 +100,10 @@ public partial class MainWindow : Window
         try
         {
             //This is my connection string i have assigned the database file address path
-            string MyConnection2 ="server=localhost;database=abd21;port=3306;User Id=root;password=09January2004"; 
+            string MyConnection2 ="server=localhost;database=pp1;port=3306;User Id=root;password=09January2004"; 
             //This is my insert query in which i am taking input from the user through windows forms
-            string Query = "insert into Транспортные_средства(id,название,тип,вместимость) values('" + this.txtid.Text +
-                           "','" + this.txtназвание.Text + "','" + this.txtтип.Text + "','" + this.txtвместимость.Text +"');";
+            string Query = "insert into  студенты( id, ФИО, Дата_рождения, Адрес, Телефон) values('" + this.txtid.Text +
+                           "','" + this.txtФИО.Text + "','" + this.txtДата_рождения.Text + "','" + this.txtАдрес.Text + this.txtТелефон.Text + "');";
             //This is  MySqlConnection here i have created the object and pass my connection string.
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
             //This is command class which will handle the query and connection object.
@@ -118,7 +120,8 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-        } 
+        }  
+ 
 
     }
 
@@ -127,9 +130,9 @@ public partial class MainWindow : Window
         try
         {
             //This is my connection string i have assigned the database file address path
-            string MyConnection2 ="server=localhost;database=abd21;port=3306;User Id=root;password=09January2004"; 
+            string MyConnection2 ="server=localhost;database=pp1;port=3306;User Id=root;password=09January2004"; 
             //This is my update query in which i am taking input from the user through windows forms and update the record.
-            string Query ="update Транспортные_средства set id='" + this.txtEditid.Text + "',название='" + this.txtEditназвание.Text + "',тип='" + this.txtEditтип.Text + "',вместимость='" + this.txtEditвместимость.Text +  "' where id='" + this.txtEditid.Text + "';";
+            string Query ="update студенты set id='" + this.txtEditid.Text + "',ФИО='" + this.txtEditФИО.Text + "',Дата_рождения='" + this.txtEditДата_рождения.Text + "',Адрес='" + this.txtEditАдрес.Text +  "',Телефон='" + this.txtEditТелефон.Text +  "' where id='" + this.txtEditid.Text + "';";
             
              
             //This is  MySqlConnection here i have created the object and pass my connection string.
@@ -154,8 +157,8 @@ public partial class MainWindow : Window
     {
         try
         {
-            string MyConnection2 ="server=localhost;database=abd21;port=3306;User Id=root;password=09January2004"; 
-            string Query = "delete from Транспортные_средства where id='" + this.txtDeleteid.Text + "';";
+            string MyConnection2 ="server=localhost;database=pp1;port=3306;User Id=root;password=09January2004"; 
+            string Query = "delete from  студенты where id='" + this.txtDeleteid.Text + "';";
             MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
             MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
             MySqlDataReader MyReader2;
@@ -170,7 +173,8 @@ public partial class MainWindow : Window
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message);
-        } 
+        }  
+       
     }
 
     
@@ -184,20 +188,21 @@ public partial class MainWindow : Window
 
     private void SaveData_OnClick(object? sender, RoutedEventArgs e)
     {
-        маршруты1 маршруты1 = new маршруты1();
-        маршруты1.Show();
+        RegistrationForm1 registrationForm1 = new RegistrationForm1();
+        registrationForm1.Show(); 
         
     }
 
-    private void CmbТранспортные_средства_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+ 
+
+    private void Cmbстуденты_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        var Транспортные_средстваComboBox = (ComboBox)sender;
-        var currentТранспортные_средства = Транспортные_средстваComboBox.SelectedItem as Транспортные_средства;
-        var filteredТранспортные_средства = _Транспортные_средстваs
-            .Where(x => x.тип == currentТранспортные_средства.тип)
+        var студентыComboBox = (ComboBox)sender;
+        var currentстуденты = студентыComboBox.SelectedItem as студенты;
+        var filteredстуденты = _студентыs
+            .Where(x => x.Дата_рождения == currentстуденты.Дата_рождения)
             .ToList();
-        Транспортные_средстваGrid.ItemsSource = filteredТранспортные_средства;
-        
+        студентыGrid.ItemsSource = filteredстуденты;
     }
 }
 
@@ -205,7 +210,7 @@ internal class MessageBox
 {
     public static void Show(string saveData)
     {
-        throw new NotImplementedException();
+        
     }
 }
 
