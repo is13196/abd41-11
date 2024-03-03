@@ -28,8 +28,6 @@
       <Compile Remove="график_работы_водителей.cs" />
       <Compile Remove="Gender.cs" />
       <Compile Remove="Booking.cs" />
-      <Compile Include="Маршруты.cs" />
-      <Compile Include="Транспортные_средства.cs" />
       <Compile Remove="Маршруты.axaml.cs" />
     </ItemGroup>
 
